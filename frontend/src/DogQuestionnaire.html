@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Diet Questionnaire</title>
+    <style>
+        /* Set global font to Georgia serif - clearly distinguishes 1/l/I and 0/O */
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif; /* Serif font with clear character distinction */
+            background-color: #F5F5DC; /* Beige background (official beige color) */
+            color: #3E2723; /* Dark brown for text - earthtone */
+            font-size: 18px; /* Larger base font size for readability */
+            padding: 20px;
+            max-width: 700px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the form on page */
+        }
+
+        /* Main heading styling */
+        h1 {
+            color: #8B0000; /* Dark red/cranberry color for headers */
+            font-size: 32px; /* Large, prominent heading */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form container styling */
+        form {
+            background-color: #FAEBD7; /* AntiqueWhite - lighter beige for form background */
+            padding: 30px;
+            border-radius: 10px; /* Rounded corners for modern look */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        }
+
+        /* Label styling for form fields */
+        label {
+            display: block; /* Each label on its own line */
+            color: #654321; /* Brown earthtone for labels */
+            font-weight: bold;
+            font-size: 20px; /* Larger font for labels */
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* Text input and number input styling */
+        input[type="text"],
+        input[type="number"] {
+            width: 100%; /* Full width of container */
+            padding: 12px; /* Comfortable padding inside input */
+            font-size: 18px; /* Match body font size */
+            font-family: 'Georgia', serif; /* Keep serif font in inputs */
+            border: 2px solid #8B4513; /* SaddleBrown border - earthtone */
+            border-radius: 5px;
+            background-color: #FFFAF0; /* FloralWhite - very light beige/cream */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        /* Input focus state - highlights active field */
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none; /* Remove default browser outline */
+            border-color: #A52A2A; /* Brown-red when focused */
+            background-color: #FFFFFF; /* Pure white when active */
+        }
+
+        /* Fieldset for grouping checkbox options */
+        fieldset {
+            border: 2px solid #8B4513; /* SaddleBrown border */
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #FFF8DC; /* Cornsilk - warm light beige */
+        }
+
+        /* Legend for fieldset title */
+        legend {
+            color: #8B0000; /* Dark red/cranberry */
+            font-weight: bold;
+            font-size: 20px;
+            padding: 0 10px;
+        }
+
+        /* Checkbox container for proper spacing */
+        .checkbox-group {
+            margin: 10px 0;
+        }
+
+        /* Individual checkbox item styling */
+        .checkbox-item {
+            display: flex; /* Align checkbox and label horizontally */
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        /* Checkbox input styling */
+        input[type="checkbox"] {
+            width: 20px; /* Larger checkbox */
+            height: 20px;
+            margin-right: 10px; /* Space between checkbox and label */
+            cursor: pointer; /* Show hand cursor on hover */
+        }
+
+        /* Checkbox label styling */
+        .checkbox-item label {
+            margin: 0; /* Remove default margin */
+            font-weight: normal; /* Normal weight for checkbox labels */
+            font-size: 18px;
+            cursor: pointer; /* Clickable label */
+        }
+
+        /* Submit button styling */
+        button[type="submit"] {
+            background-color: #B22222; /* FireBrick - fresh blood red */
+            color: #FFFFFF; /* White text */
+            font-family: 'Georgia', serif; /* Match font */
+            font-size: 22px; /* Large button text */
+            font-weight: bold;
+            padding: 15px 40px; /* Generous padding */
+            border: none; /* No border */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer; /* Hand cursor on hover */
+            margin-top: 30px;
+            width: 100%; /* Full width button */
+            transition: background-color 0.3s ease; /* Smooth color transition */
+        }
+
+        /* Submit button hover effect */
+        button[type="submit"]:hover {
+            background-color: #8B0000; /* Darker red on hover */
+        }
+
+        /* Submit button active/pressed state */
+        button[type="submit"]:active {
+            background-color: #660000; /* Even darker when clicked */
+            transform: scale(0.98); /* Slight shrink effect when pressed */
+        }
+
+        /* Small helper text styling */
+        .helper-text {
+            font-size: 16px;
+            color: #5D4037; /* Medium brown */
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dog Diet Questionnaire</h1>
+    
+    <!-- Form submits to /api/submit-dog-info endpoint using POST method -->
+    <form id="dogQuestionnaireForm" action="/api/submit-dog-info" method="POST">
+        
+        <!-- Breed Name Field (maps to breed_name_AKC in database) -->
+        <label for="breed_name">Breed Name:</label>
+        <input 
+            type="text" 
+            id="breed_name" 
+            name="breed_name_AKC" 
+            required 
+            placeholder="Choose the AKC breed name or the catch-all group at the bottom"
+        >
+        <div class="helper-text">Enter the official American Kennel Club breed name</div>
+
+        <!-- Dog's Age Field (maps to age_years_preReg in database) -->
+        <label for="age_years">Dog's Age (in years):</label>
+        <input 
+            type="number" 
+            id="age_years" 
+            name="age_years_preReg" 
+            step="0.1" 
+            min="0" 
+            max="30" 
+            required 
+            placeholder="e.g., 3.5 for 3 and a half years"
+        >
+        <div class="helper-text">You can use 1 decimal (e.g., 3.5 for three and a half years old)</div>
+
+        <!-- Diet-Related Health Status Field (maps to status_dietRelat_preReg in database) -->
+        <!-- Using checkboxes to allow multiple selections -->
+        <fieldset>
+            <legend>Diet-Related Health Status:</legend>
+            <div class="helper-text" style="margin-top: 0;">Mark all that apply. If none apply, mark "None".</div>
+            
+            <div class="checkbox-group">
+                <!-- Each checkbox value matches database expected values -->
+                <div class="checkbox-item">
+                    <input type="checkbox" id="status_none" name="status_dietRelat_preReg" value="none">
+                    <label for="status_none">None - No special dietary needs</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="status_puppy" name="status_dietRelat_preReg" value="puppy">
+                    <label for="status_puppy">Puppy - Growing dog under 1 year</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="status_elderly" name="status_dietRelat_preReg" value="elderly">
+                    <label for="status_elderly">Elderly/Senior - Older dog with age-related needs</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="status_pregnant" name="status_dietRelat_preReg" value="pregnant">
+                    <label for="status_pregnant">Pregnant - Expecting mother dog</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="status_allergy" name="status_dietRelat_preReg" value="allergy">
+                    <label for="status_allergy">Allergy - Food or environmental allergies</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="status_other" name="status_dietRelat_preReg" value="other_health">
+                    <label for="status_other">Other Health Issues - Other medical conditions</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Submit Button - triggers form submission to backend -->
+        <button type="submit">Submit Dog Information</button>
+    </form>
+
+    <!-- JavaScript to handle form submission and call Python backend -->
+    <script>
+        // Get reference to the form element
+        const form = document.getElementById('dogQuestionnaireForm');
+        
+        // Add event listener for form submission
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission (page reload)
+            
+            // Collect form data
+            const formData = new FormData(form);
+            
+            // Get all checked status values (since multiple checkboxes allowed)
+            const statusValues = formData.getAll('status_dietRelat_preReg');
+            
+            // Build data object to send to backend
+            const dogData = {
+                breed_name_AKC: formData.get('breed_name_AKC'), // Get breed name
+                age_years_preReg: parseFloat(formData.get('age_years_preReg')), // Convert age to number
+                status_dietRelat_preReg: statusValues // Array of selected statuses
+            };
+            
+            try {
+                // Send POST request to backend API endpoint
+                const response = await fetch('/api/submit-dog-info', {
+                    method: 'POST', // HTTP POST method
+                    headers: {
+                        'Content-Type': 'application/json' // Sending JSON data
+                    },
+                    body: JSON.stringify(dogData) // Convert data object to JSON string
+                });
+                
+                // Check if request was successful
+                if (response.ok) {
+                    const result = await response.json(); // Parse JSON response
+                    alert('Success! ' + result.message); // Show success message to user
+                    // Optionally display the report or redirect to report page
+                    console.log('Report:', result.report); // Log report to console
+                } else {
+                    // Handle error response
+                    const error = await response.json();
+                    alert('Error: ' + error.message); // Show error to user
+                }
+            } catch (error) {
+                // Handle network or other errors
+                console.error('Error submitting form:', error);
+                alert('Failed to submit form. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
