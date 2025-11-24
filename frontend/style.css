@@ -2,7 +2,7 @@
         /* Set global font to Georgia serif - clearly distinguishes 1/l/I and 0/O */
         body {
             font-family: 'Georgia', 'Times New Roman', serif; /* Serif font with clear character distinction */
-            background-color: #F5F5DC; /* Beige background (official beige color) */
+            background-color: #f0eee0; /* Beige background (official beige color) */
             color: #3E2723; /* Dark brown for text - earthtone */
             font-size: 18px; /* Larger base font size for readability */
             padding: 20px;
@@ -105,7 +105,7 @@
 
         /* Submit button styling */
         button[type="submit"] {
-            background-color: #B22222; /* FireBrick - fresh blood red */
+            background-color: #1F6E14 ; /* FireBrick - fresh blood red */
             color: #FFFFFF; /* White text */
             font-family: 'Georgia', serif; /* Match font */
             font-size: 22px; /* Large button text */
@@ -148,21 +148,4 @@
             opacity: 0.8; /* Slightly transparent for subtle divider effect */
         }
 
-        /* Admin section heading styling */
-        h2 {
-            color: #8B0000; /* Dark red/cranberry to match h1 */
-            font-size: 28px; /* Slightly smaller than main heading */
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        /* Admin info text styling */
-        .admin-info {
-            text-align: center;
-            color: #654321; /* Brown earthtone */
-            font-size: 16px;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-    
+       

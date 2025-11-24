@@ -10,9 +10,10 @@
     <body>
         <!--header-->
         <header>
-            <img src="logoss.png" alt="WhiskerWorthylogo">
-            <h1>WhiskerWorthy</h1>
+            <img src="doggy.jpeg" alt="WhiskerWorthylogo" width="695" height="385">
+           
         </header>
+        <div id="root"></div>
           <!-- Form submits to /api/submit-dog-info endpoint using POST method -->
     <form id="dogQuestionnaireForm" action="/api/submit-dog-info" method="POST">
         
@@ -23,8 +24,7 @@
             id="breed_name" 
             name="breed_name_AKC" 
             required 
-            placeholder="Choose the AKC breed name or the catch-all group at the bottom"
-        >
+            placeholder="Choose the AKC breed name or the catch-all group at the bottom" >
         <div class="helper-text">Enter the official American Kennel Club breed name</div>
 
         <!-- Dog's Age Field (maps to age_years_preReg in database) -->
@@ -84,10 +84,4 @@
         <!-- Submit Button - triggers form submission to backend -->
         <button type="submit">Submit Dog Information</button>
     </form>
-  <!-- Logo Image    <img 
-       
-        alt="WhiskerWorthy Logo" 
-        class="logo-divider"
-        <script src="script.js"></script>
-    </body>
-</html>
+ 
