@@ -2,7 +2,7 @@
 
 import os
 from dotenv import load_dotenv  # Loads environment variables from .env file
-import  asyncpg  # Async PostgreSQL driver for FastAPI
+import asyncpg  # Async PostgreSQL driver for FastAPI
 from typing import Optional
 
 # Load environment variables from .env file
