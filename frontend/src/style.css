@@ -1,11 +1,13 @@
-body {
+ /* Set global font to Georgia serif - clearly distinguishes 1/l/I and 0/O */
+        body {
             font-family: 'Georgia', 'Times New Roman', serif; /* Serif font with clear character distinction */
-            background-color: #F5F5DC; /* Beige background (official beige color) */
+            background-color: #f0eee0; /* Beige background (official beige color) */
             color: #3E2723; /* Dark brown for text - earthtone */
             font-size: 18px; /* Larger base font size for readability */
             padding: 20px;
             max-width: 700px; /* Limit width for better readability */
             margin: 0 auto; /* Center the form on page */
+             
         }
 
         /* Main heading styling */
@@ -102,7 +104,7 @@ body {
 
         /* Submit button styling */
         button[type="submit"] {
-            background-color: #B22222; /* FireBrick - fresh blood red */
+            background-color: #1F6E14 ; /* FireBrick - fresh blood red */
             color: #FFFFFF; /* White text */
             font-family: 'Georgia', serif; /* Match font */
             font-size: 22px; /* Large button text */
@@ -145,4 +147,4 @@ body {
             opacity: 0.8; /* Slightly transparent for subtle divider effect */
         }
 
- 
+       
