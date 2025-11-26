@@ -1,0 +1,21 @@
+{
+  "name": "dogdietapp",
+  "version": "1.0.0",
+  "description": "Dog database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brranforrd/DogDietApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Brranforrd/DogDietApp/issues"
+  },
+  "homepage": "https://github.com/Brranforrd/DogDietApp#readme"
+}
