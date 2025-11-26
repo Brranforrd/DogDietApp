@@ -1,0 +1,23 @@
+{
+  "name": "dogdietapp",
+  "version": "1.0.0",
+  "description": "Dog database",
+  "main": "index.js",
+  "scripts": {
+  "dev": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brranforrd/DogDietApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Brranforrd/DogDietApp/issues"
+  },
+  "homepage": "https://github.com/Brranforrd/DogDietApp#readme"
+}
