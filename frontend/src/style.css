@@ -38,7 +38,8 @@
 
         /* Text input and number input styling */
         input[type="text"],
-        input[type="number"] {
+        input[type="number"],
+        select {
             width: 100%; /* Full width of container */
             padding: 12px; /* Comfortable padding inside input */
             font-size: 18px; /* Match body font size */
@@ -47,15 +48,61 @@
             border-radius: 5px;
             background-color: #FFFAF0; /* FloralWhite - very light beige/cream */
             box-sizing: border-box; /* Include padding in width calculation */
+            cursor: pointer; /* Show pointer for dropdown */
+        }
+
+        /* Dropdown-specific styling */
+        select {
+            color: #3E2723;               /* Text color to match form */
+            background-color: #e2e2e1;    /* Cream background instead of blue */
+            border: 2px solid #8B4513;    /* SaddleBrown border */
+            background-image: linear-gradient(45deg, transparent 50%, #8B4513 50%), 
+                              linear-gradient(135deg, #8B4513 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1em + 2px),
+                                calc(100% - 15px) calc(1em + 2px);
+            background-size: 5px 5px, 5px 5px;
+            background-repeat: no-repeat;
+            appearance: none; /* Remove default dropdown arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        /* Dropdown options styling */
+        select option {
+            background-color: #FFFAF0;
+            color: #3E2723;
+            padding: 10px;
+        }
+
+        /* First option (placeholder) styling */
+        select option:first-child {
+            color: #384c3c;
+            font-style: italic;
         }
 
         /* Input focus state - highlights active field */
         input[type="text"]:focus,
-        input[type="number"]:focus {
-            outline: none; /* Remove default browser outline */
-            border-color: #A52A2A; /* Brown-red when focused */
-            background-color: #FFFFFF; /* Pure white when active */
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;                 /* Remove default blue outline */
+            border-color: #A52A2A;         /* Brown-red when focused */
+            background-color: #FFF5EE;     /* Warm seashell on focus */
+            box-shadow: 0 0 0 3px rgba(165, 42, 42, 0.15); /* Soft focus ring */
         }
+
+        /* Dropdown hover effect */
+        select:hover {
+            border-color: #A0522D;         /* Sienna brown on hover */
+            background-color: #FFF5EE;     /* Seashell - slightly warmer */
+        }
+
+        /* Remove default highlight color on Windows for active state */
+        select:active {
+            background-color: #FFF5EE;
+        }
+
+        /* Hide default expand arrow in old IE/EdgeHTML */
+        select::-ms-expand { display: none; }
 
         /* Fieldset for grouping checkbox options */
         fieldset {
@@ -147,4 +194,8 @@
             opacity: 0.8; /* Slightly transparent for subtle divider effect */
         }
 
-       
+      .intro-text {
+        font-size: larger;
+        font-family : 'Times New Roman', Times, serif;
+        color:#6d4023;
+     }

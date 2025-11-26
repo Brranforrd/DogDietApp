@@ -12,14 +12,13 @@
 
         <!-- Header Image -->
         <header>
-            <img src="doggy.jpeg" alt="WhiskerWorthylogo">
-        </header>
+            <img src="doggy.jpeg" alt="WhiskerWorthy logo" width="685" height="390">
+      
 
-        <!-- Title + Intro -->
         <header class="header_section_header_transparent">
-            <h1>WhiskerWorthy</h1>
+            
             <p class="intro-text">
-                WhiskerWorthy helps you consider factors to choose foods for your dog...
+                  WhiskerWorthy helps you consider factors to choose foods for your dog...
             </p>
         </header>
     <!-- Form submits to /api/submit-dog-info endpoint using POST method -->
@@ -27,13 +26,22 @@
         
         <!-- Breed Name Field (maps to breed_name_AKC in database) -->
         <label for="breed_name">Breed Name:</label>
-        <input 
-            type="text" 
+        <select 
             id="breed_name" 
             name="breed_name_AKC" 
-            required 
-            placeholder="Choose the AKC breed name or the catch-all group at the bottom" >
-        <div class="helper-text">Enter the official American Kennel Club breed name</div>
+            required>
+            <option value="">-- Select a Breed --</option>
+            <option value="Beagle">Beagle</option>
+            <option value="Chihuahua">Chihuahua</option>
+            <option value="French Bulldog">French Bulldog</option>
+            <option value="German Shepherd">German Shepherd</option>
+            <option value="Golden Retriever">Golden Retriever</option>
+            <option value="Labrador Retriever">Labrador Retriever</option>
+            <option value="Shih Tzu">Shih Tzu</option>
+            <option value="Yorkshire Terrier">Yorkshire Terrier</option>
+            <option value="Other breeds, Super-Mutt, mixed, &/or unknown">Other breeds, Super-Mutt, mixed, &/or unknown</option>
+        </select>
+        <div class="helper-text">Select the official American Kennel Club breed name or choose "Other" for mixed breeds</div>
 
         <!-- Dog's Age Field (maps to age_years_preReg in database) -->
         <label for="age_years">Dog's Age (in years):</label>
