@@ -1,3 +1,8 @@
+ - /* AI Assistance:
+   	Generate 95% and edits were performed by ChatGPT (Claude...).
+   	File: C:\Users\Meghan Carr\Desktop\Meghan - ALL til OneDrive\CodeCrew\3-16 - M3 Final\3-16-06 - TEAM - Dog Diet\DogDietApp_MC_SQLplus\README_AI_use.md
+	Source: OpenAI. (2025). ChatGPT (Nov 2025 version) [Large language model]. https://chat.openai.com/ */
+
 PROMPT and RESPONSE(S)
 I'll help you create public names and explanations for each variable in the breeds_AKC_Rsrch_FoodV1 table. First, let me examine the table structure.
 
