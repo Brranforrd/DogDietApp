@@ -139,12 +139,27 @@ def update_breed_partial(
 ):
     if search_field not in ['breed_name_AKC', 'dogapi_id']:
         raise HTTPException(status_code=400, detail='Invalid search field. Use breed_name_AKC or dogapi_id')
+    if data is None:
+        raise HTTPException(status_code=400, detail='Request body is required')
     update_data = data.dict(exclude_unset=True)
     if not update_data:
         raise HTTPException(status_code=400, detail='No update data provided')
+    
+    # Whitelist of allowed field names to prevent SQL injection
+    allowed_fields = {
+        'breed_otherNames', 'breed_group_AKC', 'breed_size_categ_AKC',
+        'breed_life_expect_yrs', 'food_recomm_brand', 'food_recomm_product',
+        'food_recomm_format', 'listed_DogDiet_MVP'
+    }
+    
+    # Filter to only include allowed fields
+    filtered_data = {k: v for k, v in update_data.items() if k in allowed_fields}
+    if not filtered_data:
+        raise HTTPException(status_code=400, detail='No valid fields to update')
+    
     try:
-        assignments = ', '.join([f"{field}=%s" for field in update_data.keys()])
-        values = list(update_data.values())
+        assignments = ', '.join([f"{field}=%s" for field in filtered_data.keys()])
+        values = list(filtered_data.values())
         conn = get_db_connection(); cur = conn.cursor()
         if search_field == 'breed_name_AKC':
             cur.execute(f"UPDATE breeds_AKC_Rsrch_FoodV1 SET {assignments} WHERE breed_name_AKC=%s", values + [search_value])
@@ -154,7 +169,7 @@ def update_breed_partial(
         return {
             'success': True,
             'message': f'Breed updated successfully via {search_field}',
-            'updated_fields': list(update_data.keys()),
+            'updated_fields': list(filtered_data.keys()),
             'search_value': search_value
         }
     except Exception as e:
@@ -204,6 +219,3 @@ def delete_breed(
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host="0.0.0.0", port=5000, reload=True)
-
-
-fetch()
