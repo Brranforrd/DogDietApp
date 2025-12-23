@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import doggyLogo from '../assets/doggy.jpeg'
+import ChatBot from './components/ChatBot'
 import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,11 +11,12 @@ function App() {
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="#" target="_blank">
-          <img src={doggyLogo} className="logo react" alt="WhiskerWorthy Doggy logo" />
-        </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>🐾 WhiskerWorthy - Dog Nutrition Assistant</h1>
+      
+      {/* ChatBot Component */}
+      <ChatBot apiUrl="http://localhost:5000/api/chat" />
+      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

@@ -9,6 +9,7 @@ from typing import List, Optional
 import uvicorn
 from database import insert_dog_questionnaire, get_db_connection
 from Report_select import choose_report
+from services.chat_service import get_chat_response, format_conversation_history
 
 app = FastAPI(title="Dog Diet API", description="API for dog diet recommendations and breed management", version="1.0.0")
 
@@ -62,6 +63,33 @@ class BreedFullUpdateInput(BaseModel):
     food_recomm_format: Optional[str] = None
     listed_DogDiet_MVP: Optional[str] = None
     dogapi_id: Optional[str] = None
+
+
+class ChatMessage(BaseModel):
+    """Single message in conversation history"""
+    role: str = Field(..., description="Message role: 'user' or 'assistant'")
+    content: str = Field(..., description="Message content")
+
+
+class ChatRequest(BaseModel):
+    """Request model for chat endpoint"""
+    message: str = Field(..., description="User's message/input", min_length=1)
+    conversation_history: Optional[List[ChatMessage]] = Field(
+        None, 
+        description="Optional conversation history for context"
+    )
+    system_prompt: Optional[str] = Field(
+        None,
+        description="Optional custom system prompt (overrides default)"
+    )
+
+
+class ChatResponse(BaseModel):
+    """Response model for chat endpoint"""
+    success: bool
+    message: str
+    response: Optional[str] = None
+    error: Optional[str] = None
 
 
 @app.get("/api/breeds")
@@ -215,6 +243,52 @@ def delete_breed(
         return {'success': True, 'message': 'Breed deleted successfully', 'deleted': search_value}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/chat", response_model=ChatResponse)
+def chat(request: ChatRequest):
+    """
+    Chat endpoint for AI chatbot.
+    Accepts user messages and returns AI responses about dog nutrition and diet.
+    
+    Supports conversation history for context-aware responses.
+    """
+    try:
+        # Format conversation history if provided
+        history = None
+        if request.conversation_history:
+            history = format_conversation_history([
+                {"role": msg.role, "content": msg.content} 
+                for msg in request.conversation_history
+            ])
+        
+        # Get AI response
+        result = get_chat_response(
+            user_message=request.message,
+            conversation_history=history,
+            system_prompt=request.system_prompt
+        )
+        
+        if result["error"]:
+            return ChatResponse(
+                success=False,
+                message="Failed to get AI response",
+                response=None,
+                error=result["error"]
+            )
+        
+        return ChatResponse(
+            success=True,
+            message="Chat response generated successfully",
+            response=result["response"],
+            error=None
+        )
+    
+    except ValueError as e:
+        # Configuration errors (missing API key, etc.)
+        raise HTTPException(status_code=503, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Chat error: {str(e)}")
 
 
 if __name__ == '__main__':
